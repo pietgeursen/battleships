@@ -1,7 +1,8 @@
-var test = require('tape');
+const test = require('tape');
+import startGame from "../lib/battleships.js"
 
-test('timing test', function (t) {
+test('startGame', function (t) {
     t.plan(1);
 
-    t.equal(typeof Date.now, 'function');
+    t.ok(startGame({}));
 });
