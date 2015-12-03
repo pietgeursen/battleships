@@ -3,6 +3,6 @@ import startGame from "../lib/battleships.js"
 
 test('startGame', function (t) {
     t.plan(1);
-
-    t.ok(startGame({}));
+    let game = startGame({})
+    t.equals(game.getIncoming().count(), 0);
 });
