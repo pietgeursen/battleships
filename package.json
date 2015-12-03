@@ -1,0 +1,19 @@
+{
+  "name": "battleships",
+  "version": "1.0.0",
+  "description": "turnless battleship module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pietgeursen/battleships.git"
+  },
+  "author": "pietgeursen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pietgeursen/battleships/issues"
+  },
+  "homepage": "https://github.com/pietgeursen/battleships#readme"
+}
