@@ -1,15 +1,15 @@
-import {List} from "immutable"
+import {List, Map} from "immutable"
 
 const startGame = (shipConfig) => {
-  let ships = List([])
-  let incoming = List([])
-  let outgoing = List([])
+  return Map({
+    ships: List(),
+    incoming: List(),
+    outgoing: List()
+  })
+}
 
-  return {
-    getShips: () => {return ships},
-    getIncoming: () => {return incoming},
-    getOutgoing: () => {return outgoing}
-  }
+const createBoard = (shipConfig) => {
+  return {}
 }
 
 module.exports = startGame
