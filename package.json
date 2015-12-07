@@ -7,7 +7,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "watch": "babel src -d lib -w",
-    "test": "npm run build && babel-tape-runner 'tests/**/*.js'"
+    "test": "npm run build && babel-tape-runner 'tests/**/*.js'",
+    "start": "node lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "tape": "^4.2.2"
   },
   "dependencies": {
-    "immutable": "^3.7.5"
+    "immutable": "^3.7.5",
+    "split2": "^1.0.0",
+    "through2": "^2.0.0"
   }
 }
