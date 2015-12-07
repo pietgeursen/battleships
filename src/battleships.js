@@ -1,29 +1,43 @@
-import {List, Map} from "immutable"
-import {Readable} from "stream"
+import { List, Map } from 'immutable'
+
+const Shot = (position) => {
+	return Map({
+		result: false,
+		position: position
+	})
+}
 
 const startGame = (shipConfig) => {
   return Map({
     ships: List(createBoard(shipConfig)),
     incoming: List(),
-    outgoing: List(),
+    outgoing: List()
   })
 }
 
 const createBoard = (shipConfig) => {
-  return []
+  return List(shipConfig)
 }
 
 const sendFire = (game, position) => {
-  return game.updateIn(["incoming"], (incoming) =>{
-    return incoming.concat(position)
+  return game.updateIn(['outgoing'], (list) => {
+    return list.push(Shot(position))
   })
 }
 
 const receiveFire = (game, position) => {
-   s.push('hit\n')
-   s.push(null)
+  return game.updateIn(['incoming'], (list) => {
+    return list.push(position)
+  })
 }
- 
+
+const hasLost = (game) => {
+	const ships = game.get("ships").toSet()
+	const shots = game.get("incoming").toSet()	
+	return ships.subtract(shots).count() === 0
+}
+
 exports.startGame = startGame
 exports.sendFire = sendFire
 exports.receiveFire = receiveFire
+exports.hasLost = hasLost
