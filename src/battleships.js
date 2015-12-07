@@ -1,14 +1,11 @@
 import {List, Map} from "immutable"
 import {Readable} from "stream"
-var through = require('through2')
 
 const startGame = (shipConfig) => {
-  let rs = Readable()
   return Map({
     ships: List(createBoard(shipConfig)),
     incoming: List(),
     outgoing: List(),
-    readableStream: rs
   })
 }
 
@@ -17,14 +14,16 @@ const createBoard = (shipConfig) => {
 }
 
 const sendFire = (game, position) => {
-
+  return game.updateIn(["incoming"], (incoming) =>{
+    return incoming.concat(position)
+  })
 }
 
 const receiveFire = (game, position) => {
-   let s = game.get('readableStream')
    s.push('hit\n')
    s.push(null)
 }
  
 exports.startGame = startGame
+exports.sendFire = sendFire
 exports.receiveFire = receiveFire
