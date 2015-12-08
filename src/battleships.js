@@ -37,7 +37,14 @@ const hasLost = (game) => {
 	return ships.subtract(shots).count() === 0
 }
 
+const isOpponentsTurn = (game) => {
+  const myTurnsCount = game.get('incoming').count()
+  const theirTurnsCount = game.get('outgoing').count()
+  return myTurnsCount <= theirTurnsCount
+}
+
 exports.startGame = startGame
 exports.sendFire = sendFire
 exports.receiveFire = receiveFire
 exports.hasLost = hasLost
+exports.isOpponentsTurn = isOpponentsTurn

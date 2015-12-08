@@ -3,6 +3,7 @@ const startGame = require('../lib/battleships.js').startGame
 const receiveFire = require('../lib/battleships.js').receiveFire
 const sendFire = require('../lib/battleships.js').sendFire
 const hasLost = require('../lib/battleships.js').hasLost
+const isOpponentsTurn = require('../lib/battleships.js').isOpponentsTurn
 
 test('startGame', function (t) {
   const game = startGame([])
@@ -43,4 +44,12 @@ test('hasLost', function (t) {
   game = receiveFire(game, 'A3')
 	t.true(hasLost(game), 'game is over')
 	t.end()
+})
+
+test('isOpponentsTurn', function (t) {
+	let game = startGame(['A1', 'A2', 'A3'])
+  t.true(isOpponentsTurn(game), 'is opponents turn')
+  game = receiveFire(game, 'A1')
+  t.false(isOpponentsTurn(game), 'is not opponents turn')
+  t.end()
 })
