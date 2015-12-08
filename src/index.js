@@ -7,11 +7,11 @@ var split = require('split2')
 
 process.stdin
   .pipe(split())
-  .pipe(through(function (chunk, enc, cb) {
+  .pipe(through.obj(function (chunk, enc, cb) {
     cb(null, chunk.toString().toUpperCase()) 
   }))
   .pipe(through.obj(function (chunk, enc, cb) {
-    cb(null, {wee: 'wooo'})
+    cb(null, {wee: chunk})
   }))
   .on('data', function(data){
     console.log(data);  
