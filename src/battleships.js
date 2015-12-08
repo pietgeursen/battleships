@@ -1,10 +1,10 @@
 import { List, Map } from 'immutable'
 
 const Shot = (position) => {
-	return Map({
-		result: false,
-		position: position
-	})
+  return Map({
+    result: false,
+    position: position
+  })
 }
 
 const startGame = (shipConfig) => {
@@ -32,9 +32,9 @@ const receiveFire = (game, position) => {
 }
 
 const hasLost = (game) => {
-	const ships = game.get("ships").toSet()
-	const shots = game.get("incoming").toSet()	
-	return ships.subtract(shots).count() === 0
+  const ships = game.get('ships').toSet()
+  const shots = game.get('incoming').toSet()
+  return ships.subtract(shots).count() === 0
 }
 
 const isOpponentsTurn = (game) => {
