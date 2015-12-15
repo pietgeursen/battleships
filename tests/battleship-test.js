@@ -4,6 +4,7 @@ const receiveFire = require('../lib/battleships.js').receiveFire
 const sendFire = require('../lib/battleships.js').sendFire
 const hasLost = require('../lib/battleships.js').hasLost
 const isOpponentsTurn = require('../lib/battleships.js').isOpponentsTurn
+const validMove = require('../lib/battleships.js').validMove
 
 test('startGame', function (t) {
   const game = startGame([])
@@ -51,5 +52,10 @@ test('isOpponentsTurn', function (t) {
   t.true(isOpponentsTurn(game), 'is opponents turn')
   game = receiveFire(game, 'A1')
   t.false(isOpponentsTurn(game), 'is not opponents turn')
+  t.end()
+})
+
+test('vaildMove', function(t){
+  t.true(validMove('A1')) 
   t.end()
 })

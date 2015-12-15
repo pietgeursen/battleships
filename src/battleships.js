@@ -7,6 +7,11 @@ const Shot = (position) => {
   })
 }
 
+const validMove = (move) => {
+  let reg = /[A-L](10|[1-9])/
+  return reg.test(move)
+}
+
 const startGame = (shipConfig) => {
   return Map({
     ships: List(createBoard(shipConfig)),
@@ -48,3 +53,4 @@ exports.sendFire = sendFire
 exports.receiveFire = receiveFire
 exports.hasLost = hasLost
 exports.isOpponentsTurn = isOpponentsTurn
+exports.validMove = validMove
