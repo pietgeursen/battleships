@@ -57,5 +57,6 @@ test('isOpponentsTurn', function (t) {
 
 test('vaildMove', function(t){
   t.true(validMove('A1')) 
+  t.false(validMove('A1A1'))
   t.end()
 })

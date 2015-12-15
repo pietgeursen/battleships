@@ -11,19 +11,39 @@ const upperCase = map({wantStrings: true}, (str) => {
   return str.toUpperCase()
 })
 
-const filterValidShots = filter({wantStings: true}, validMove)
 const recordFire = through.obj((chunk, enc, cb)=>{
   game = sendFire(game, chunk)
   cb(null, chunk)
 })
 
-process.stdin
+const filterValidShots = filter({wantStings: true}, validMove)
+
+const filterResults = filter({wantStrings: true}, (str) => {
+ return str.split(' ')[0] == "HIT" 
+})
+
+const filterIncomingShots = filter({wantStrings: true}, (str) => {
+ return str.split(' ')[0] == "FIRED" 
+})
+
+const filterOutgoingShots = filter({wantStrings: true}, (str) => {
+ return str.split(' ')[0] == "FIRE" 
+})
+
+const filterTrashTalk = filter({wantStrings: true}, (str) => {
+ return str.split(' ')[0] == "TRASH" 
+})
+
+const upperCaseStream = process.stdin
   .pipe(split())
   .pipe(upperCase)
+
+upperCaseStream
   .pipe(filterValidShots)
   .pipe(recordFire)
-  .on('data', function(data){
-    console.log(data)  
-    console.log(game)
-  })
-  //.pipe(process.stdout)
+  .pipe(process.stdout)
+
+
+upperCaseStream
+  .pipe(filterTrashTalk)
+  .pipe(process.stdout)

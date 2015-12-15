@@ -8,7 +8,7 @@ const Shot = (position) => {
 }
 
 const validMove = (move) => {
-  let reg = /[A-L](10|[1-9])/
+  let reg = /\b[A-L]((10)|[1-9])\b/
   return reg.test(move)
 }
 
