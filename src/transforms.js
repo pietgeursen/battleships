@@ -1,6 +1,6 @@
 var through = require('through2')
-var filter = require('through2-filter')
-var map = require('through2-map')
+var filter = require('through2-filter').ctor
+var map = require('through2-map').ctor
 var split = require('split2')
 
 import {startGame, validMove, sendFire} from './battleships'
@@ -27,7 +27,7 @@ const filterIncomingShots = filter({wantStrings: true}, (str) => {
   return str.split(' ')[0] == "FIRED" 
 })
 
-const filterOutgoingShots = filter.ctor({wantStrings: true}, (str) => {
+const filterOutgoingShots = filter({wantStrings: true}, (str) => {
   return str.split(' ')[0] == "FIRE" 
 })
 

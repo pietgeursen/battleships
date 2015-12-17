@@ -11,7 +11,7 @@ const recordFire = require('../src/transforms').recordFire
 test('upper case stream', (t) => {
   const rs = new Readable()
   rs
-    .pipe(upperCase)
+    .pipe(upperCase())
     .on('data', (data) =>{
       t.equals(data.toString(), 'PIET') 
       t.end()
