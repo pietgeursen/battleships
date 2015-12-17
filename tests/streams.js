@@ -6,6 +6,7 @@ const split = require('split2')
 const upperCase = require('../src/transforms').upperCase
 const filterOutgoingShots = require('../src/transforms').filterOutgoingShots
 const filterIncomingShots = require('../src/transforms').filterIncomingShots
+const filterValidShots = require('../src/transforms').filterValidShots
 const recordFire = require('../src/transforms').recordFire
 
 test('upper case stream', (t) => {
@@ -34,14 +35,17 @@ test('filter outgoing shots', (t) => {
 })
 
 test('fire shots', (t) => {
-  const rs2 = new Readable()
+  const rs = new Readable()
   t.plan(1)
-  rs2
+  rs
+    .pipe(upperCase())
     .pipe(filterOutgoingShots())
+    .pipe(filterValidShots())
+    .pipe(recordFire())
     .on('data', (data) => {
-      t.equals(data.toString(), 'FIRE A1' )
+      t.equals(data.toString(), 'FIRED A1' )
     })
-  rs2.push('FIRED A1')
-  rs2.push('FIRE A1')
-  rs2.push(null)
+  rs.push('FIRED A1')
+  rs.push('FIRE A1')
+  rs.push(null)
 })

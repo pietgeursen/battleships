@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "watch": "babel src -d lib -w",
-    "test": "npm run build && babel-tape-runner 'tests/**/*.js' ",
+    "test": "npm run build && babel-tape-runner 'tests/**/*.js' | faucet ",
     "start": "node lib/index.js"
   },
   "repository": {

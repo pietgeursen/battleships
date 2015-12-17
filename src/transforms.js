@@ -11,10 +11,10 @@ const upperCase = map({wantStrings: true}, (str) => {
   return str.toUpperCase()
 })
 
-const recordFire = through.obj((chunk, enc, cb)=>{
-  game = sendFire(game, chunk)
-  
-  cb(null, chunk)
+const recordFire = map({wantStrings: true}, (str)=>{
+  const position = str.split(' ')[1]  
+  game = sendFire(game, position)
+  return "FIRED " + position
 })
 
 const filterValidShots = filter({wantStings: true}, validMove)
@@ -36,4 +36,5 @@ const filterOutgoingShots = filter({wantStrings: true}, (str) => {
 exports.upperCase = upperCase
 exports.filterOutgoingShots = filterOutgoingShots
 exports.filterIncomingShots = filterIncomingShots
+exports.filterValidShots = filterValidShots
 exports.recordFire = recordFire;
